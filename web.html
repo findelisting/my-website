@@ -1,0 +1,126 @@
+import './app.css';
+
+// Landing/Home Page with sectioned layout
+function LandingPage() {
+  return (
+    <div className="landing-root">
+      {/* HERO SECTION */}
+      <header className="hero-section">
+        <h1>Building Smarter Businesses with AI Solutions</h1>
+        <p>Unlock innovation with AI, automation, and integration.</p>
+        <Link to="/signup">
+          <button className="hero-cta-btn">
+            Get Started
+          </button>
+        </Link>
+      </header>
+
+      {/* WHAT WE DO SECTION */}
+      <section className="what-we-do-section">
+        <h2>What We Do</h2>
+        <div className="services-list">
+          {services.map((service, idx) => (
+            <div key={idx} className="service-card">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US SECTION */}
+      <section className="why-choose-section">
+        <h2>Why Choose Us?</h2>
+        <ol>
+          <li>Expertise in tailored AI and automation</li>
+          <li>Seamless integration with your existing tools</li>
+          <li>Cutting-edge solutions for unique challenges</li>
+        </ol>
+      </section>
+
+      {/* TESTIMONIALS SECTION */}
+      <section className="testimonials-section">
+        <h2>What Our Clients Say</h2>
+        <div className="testimonials-list">
+          {testimonials.map((t, idx) => (
+            <div key={idx} className="testimonial-card">
+              <p className="testimonial-quote">"{t.quote}"</p>
+              <hr />
+              <div>
+                <span className="testimonial-name">{t.name}</span> <span className="testimonial-title">&ndash; {t.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// Features Page
+function FeaturesPage() {
+  return (
+    <div className="features-page-root">
+      <h1>Our Solutions & Features</h1>
+      <div className="features-list">
+        {services.map((s, idx) => (
+          <div key={idx} className="feature-card">
+            <h2>{s.title}</h2>
+            <p>{s.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Signup Page
+function SignupPage() {
+  return (
+    <div className="signup-page-root">
+      <h1>Sign Up for Updates</h1>
+      <form className="signup-form">
+        <label>Name:</label>
+        <input type="text" />
+        <label>Email:</label>
+        <input type="email" />
+        <button type="submit">Sign Up</button>
+      </form>
+      <div className="signup-contact">
+        <ContactInfo />
+      </div>
+    </div>
+  );
+}
+
+// About Page (Additional separation)
+function AboutPage() {
+  return (
+    <div className="about-page-root">
+      <h1>About AI Solutions Co.</h1>
+      <p>
+        At AI Solutions Co., we are passionate about enabling innovation for businesses of all sizes.
+        Our team combines expertise in AI, automation, and integration to deliver truly smart solutions to our clients.
+      </p>
+      <div className="about-contact">
+        <ContactInfo />
+      </div>
+    </div>
+  );
+}
+
+// Update App to include About page and CSS
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={LandingPage}/>
+        <Route path="/features" component={FeaturesPage}/>
+        <Route path="/signup" component={SignupPage}/>
+        <Route path="/about" component={AboutPage}/>
+      </Switch>
+      <Footer />
+    </Router>
+  );
+}
